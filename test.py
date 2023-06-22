@@ -1,4 +1,5 @@
 import psycopg2
+from colorama import Fore, Style
 
 # Connect to the PostgreSQL database
 conn = psycopg2.connect(
@@ -25,19 +26,19 @@ for row in rows:
 
     # Determine the department based on the employee ID
     if department_id == 1:
-        department = "Marketing"
+        department = Fore.GREEN + "Marketing" + Style.RESET_ALL
     elif department_id == 2:
-        department = "Sales"
+        department = Fore.BLUE + "Sales" + Style.RESET_ALL
     elif department_id == 3:
-        department = "IT"
+        department = Fore.YELLOW + "IT" + Style.RESET_ALL
     else:
         department = "Unknown Department"
 
     # Determine if the employee can work remotely or locally based on their location
     if location == "California":
-        work_status = "Local"
+        work_status = Fore.RED + "Local" + Style.RESET_ALL
     else:
-        work_status = "Remote"
+        work_status = Fore.CYAN + "Remote" + Style.RESET_ALL
 
     # Store the employee's department and work status
     employee_departments[employee_id] = {
@@ -49,7 +50,7 @@ for row in rows:
 for employee_id, data in employee_departments.items():
     department = data["department"]
     work_status = data["work_status"]
-    print(f"Employee ID: {employee_id}, Department: {department}, Work Status: {work_status}")
+    print(f"Employee ID: {Fore.MAGENTA}{employee_id}{Style.RESET_ALL}, Department: {department}, Work Status: {work_status}")
 
 # Close the cursor and connection
 cursor.close()
