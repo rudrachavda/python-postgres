@@ -13,44 +13,43 @@ conn = psycopg2.connect(
 
 app = Flask(__name__)
 
-# Endpoint to get all employees
-@app.route('/employees', methods=['GET'])
+# Endpoint to get all employees 
+@app.route('/employees', methods=['GET']) #add /id: after employees
 def get_employees():
     # Create a cursor object to execute SQL queries
     cursor = conn.cursor()
 
     # Execute a SELECT query to retrieve employee data
-    cursor.execute("SELECT employee_id, first_name, last_name, location, department_id FROM employee;")
+    cursor.execute("SELECT e.employee_id, e.first_name, e.last_name, e.location, d.department_name FROM employee e, department d where e.department_id=d.department_id")
 
     # Fetch all rows from the result set
     rows = cursor.fetchall()
 
     # Assign employees to their departments based on their IDs
-    employee_departments = {}
+    employee_departments = []
     for row in rows:
-        employee_id, first_name, last_name, location, department_id = row
+        employee_id, first_name, last_name, location, department_name = row
 
-        # Determine the department based on the employee ID
-        if department_id == 1:
-            department = Fore.GREEN + "Marketing" + Style.RESET_ALL
-        elif department_id == 2:
-            department = Fore.BLUE + "Sales" + Style.RESET_ALL
-        elif department_id == 3:
-            department = Fore.YELLOW + "IT" + Style.RESET_ALL
-        else:
-            department = "Unknown Department"
-
-        # Determine if the employee can work remotely or locally based on their location
         if location == "California":
-            work_status = Fore.RED + "Local" + Style.RESET_ALL
+            work_status =  "Local" 
         else:
-            work_status = Fore.CYAN + "Remote" + Style.RESET_ALL
+            work_status =  "Remote" 
 
-        # Store the employee's department and work status
-        employee_departments[employee_id] = {
-            "department": department,
-            "work_status": work_status
+        employee = {
+            "id" : employee_id,
+            "firstName" : first_name,
+            "lastName" : last_name,
+            "location" : location,
+            "departmentName":department_name,
+            "workStatus"  : work_status
         }
+        
+        # # Store the employee's department and work status
+        # employee_departments[employee_id] = {
+        #     "department": department,
+        #     "work_status": work_status
+        # }
+        employee_departments.append(employee)
 
     # Close the cursor
     cursor.close()
