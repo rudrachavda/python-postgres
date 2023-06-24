@@ -1,52 +1,52 @@
--- Create a sequence for the employee_id column
--- CREATE SEQUENCE employee_id_sequence
---     START WITH 1000
---     INCREMENT BY 1
---     MAXVALUE 9999;
+Create a sequence for the employee_id column
+CREATE SEQUENCE employee_id_sequence
+    START WITH 1000
+    INCREMENT BY 1
+    MAXVALUE 9999;
 
--- DROP TABLE IF EXISTS employee;
--- CREATE TABLE employee (
---     employee_id SMALLINT PRIMARY KEY DEFAULT nextval('employee_id_sequence'),
---     first_name VARCHAR(50) NOT NULL,
---     last_name VARCHAR(50) NOT NULL,
---     location VARCHAR(50) NOT NULL,
---     date_of_birth DATE NOT NULL,
---     department_id INT NOT NULL
--- );
+DROP TABLE IF EXISTS employee;
+CREATE TABLE employee (
+    employee_id SMALLINT PRIMARY KEY DEFAULT nextval('employee_id_sequence'),
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    location VARCHAR(50) NOT NULL,
+    date_of_birth DATE NOT NULL,
+    department_id INT NOT NULL
+);
 
--- INSERT INTO employee (first_name, last_name, location, date_of_birth, department_id)
--- VALUES
---     ('John', 'Doe', 'New York', '1990-05-10', 1),
---     ('Jane', 'Smith', 'Los Angeles', '1985-09-15', 2),
---     ('Michael', 'Johnson', 'Chicago', '1992-07-20', 1),
---     ('Emily', 'Williams', 'San Francisco', '1988-03-25', 3),
---     ('William', 'Brown', 'California', '1994-11-05', 1),
---     ('Olivia', 'Jones', 'Miami', '1991-01-12', 2),
---     ('James', 'Taylor', 'Dallas', '1993-06-30', 3),
---     ('Sophia', 'Davis', 'California', '1989-04-18', 1),
---     ('Benjamin', 'Miller', 'Boston', '1996-02-08', 2),
---     ('Ava', 'Wilson', 'Philadelphia', '1995-08-22', 3),
---     ('Jacob', 'Moore', 'Atlanta', '1992-10-03', 1),
---     ('Mia', 'Anderson', 'Denver', '1987-12-28', 2),
---     ('Ethan', 'Thomas', 'Phoenix', '1993-09-07', 3),
---     ('Isabella', 'White', 'California', '1990-11-14', 1),
---     ('Alexander', 'Hall', 'Detroit', '1994-06-16', 2),
---     ('Charlotte', 'Young', 'Washington', '1986-03-02', 3),
---     ('Daniel', 'Lee', 'Austin', '1991-07-09', 1),
---     ('Amelia', 'Clark', 'Nashville', '1995-04-26', 2),
---     ('Matthew', 'Lewis', 'Minneapolis', '1989-12-17', 3),
---     ('Harper', 'Harris', 'Portland', '1993-02-21', 1);
+INSERT INTO employee (first_name, last_name, location, date_of_birth, department_id)
+VALUES
+    ('John', 'Doe', 'New York', '1990-05-10', 1),
+    ('Jane', 'Smith', 'Los Angeles', '1985-09-15', 2),
+    ('Michael', 'Johnson', 'Chicago', '1992-07-20', 1),
+    ('Emily', 'Williams', 'San Francisco', '1988-03-25', 3),
+    ('William', 'Brown', 'California', '1994-11-05', 1),
+    ('Olivia', 'Jones', 'Miami', '1991-01-12', 2),
+    ('James', 'Taylor', 'Dallas', '1993-06-30', 3),
+    ('Sophia', 'Davis', 'California', '1989-04-18', 1),
+    ('Benjamin', 'Miller', 'Boston', '1996-02-08', 2),
+    ('Ava', 'Wilson', 'Philadelphia', '1995-08-22', 3),
+    ('Jacob', 'Moore', 'Atlanta', '1992-10-03', 1),
+    ('Mia', 'Anderson', 'Denver', '1987-12-28', 2),
+    ('Ethan', 'Thomas', 'Phoenix', '1993-09-07', 3),
+    ('Isabella', 'White', 'California', '1990-11-14', 1),
+    ('Alexander', 'Hall', 'Detroit', '1994-06-16', 2),
+    ('Charlotte', 'Young', 'Washington', '1986-03-02', 3),
+    ('Daniel', 'Lee', 'Austin', '1991-07-09', 1),
+    ('Amelia', 'Clark', 'Nashville', '1995-04-26', 2),
+    ('Matthew', 'Lewis', 'Minneapolis', '1989-12-17', 3),
+    ('Harper', 'Harris', 'Portland', '1993-02-21', 1);
 
--- DROP TABLE IF EXISTS department;
--- CREATE TABLE department (
---     department_id SERIAL PRIMARY KEY,
---     department_name VARCHAR(50) NOT NULL
--- );
+DROP TABLE IF EXISTS department;
+CREATE TABLE department (
+    department_id SERIAL PRIMARY KEY,
+    department_name VARCHAR(50) NOT NULL
+);
 
--- INSERT INTO department (department_id, department_name)
--- VALUES (1, 'Marketing'),
--- (2, 'Sales'),
--- (3, 'IT');
+INSERT INTO department (department_id, department_name)
+VALUES (1, 'Marketing'),
+(2, 'Sales'),
+(3, 'IT');
 
 SELECT * FROM employee;
 SELECT * FROM department;
