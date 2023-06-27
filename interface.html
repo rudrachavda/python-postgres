@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Management</title>
+</head>
+<body>
+  <h1>Create Employee</h1>
+  <form action="/employees" method="POST">
+    <label for="create_first_name">First Name:</label>
+    <input type="text" id="create_first_name" name="first_name"><br>
+    <label for="create_last_name">Last Name:</label>
+    <input type="text" id="create_last_name" name="last_name"><br>
+    <label for="create_location">Location:</label>
+    <input type="text" id="create_location" name="location"><br>
+    <label for="create_department_id">Department ID:</label>
+    <input type="number" id="create_department_id" name="department_id"><br>
+    <label for="create_date_of_birth">Date of Birth:</label>
+    <input type="date" id="create_date_of_birth" name="date_of_birth"><br>
+    <input type="submit" value="Create Employee">
+  </form>
+
+  <h1>Update Employee</h1>
+  <form action="/employees/1" method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    <label for="update_first_name">First Name:</label>
+    <input type="text" id="update_first_name" name="first_name"><br>
+    <label for="update_last_name">Last Name:</label>
+    <input type="text" id="update_last_name" name="last_name"><br>
+    <label for="update_location">Location:</label>
+    <input type="text" id="update_location" name="location"><br>
+    <label for="update_department_id">Department ID:</label>
+    <input type="number" id="update_department_id" name="department_id"><br>
+    <input type="submit" value="Update Employee">
+  </form>
+
+  <h1>Delete Employee</h1>
+  <form action="/employees/1" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Employee">
+  </form>
+
+  <script>
+    // Add CSRF token to form submissions
+    function addCsrfTokenToForms() {
+      const forms = document.querySelectorAll('form');
+      const csrfToken = document.querySelector('meta[name=csrf-token]').content;
+
+      forms.forEach(form => {
+        const csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = '_csrf_token';
+        csrfInput.value = csrfToken;
+        form.appendChild(csrfInput);
+      });
+    }
+
+    // Call the function when the document is loaded
+    document.addEventListener('DOMContentLoaded', addCsrfTokenToForms);
+  </script>
+</body>
+</html>
